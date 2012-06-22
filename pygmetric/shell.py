@@ -1,6 +1,10 @@
 import subprocess
 
+
 def run(cmd):
+    """
+    Execute a command and return STDOUT
+    """
     try:
         p = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
         stdout, stderr = p.communicate()
@@ -8,7 +12,9 @@ def run(cmd):
         raise RuntimeError("Unable to execute command '%s' - error: %s" % (cmd, e))
     return stdout
 
+
 def call_gmetric(name, value, type='float'):
-    cmd = 'gmetric --type %s --name %s --value %s' % (type, name, value)
-    print cmd
-    #run(cmd)
+    """
+    Submit a metric
+    """
+    run('gmetric --type %s --name %s --value %s' % (type, name, value))

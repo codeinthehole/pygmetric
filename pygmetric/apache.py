@@ -1,8 +1,8 @@
 from pygmetric.shell import run, call_gmetric
 
 
-def submit():
-    stats = fetch_stats()
+def submit(host, port):
+    stats = fetch_stats(host, port)
     for metric in stats:
         call_gmetric(name=metric['name'],
                      value=metric['value'],
@@ -35,8 +35,8 @@ types = {
     },
 }
 
-def fetch_stats():
-    cmd = 'www-browser -dump http://localhost:81/server-status?auto'
+def fetch_stats(host, port):
+    cmd = 'www-browser -dump http://%s:%s/server-status?auto' % (host, port)
     stdout = run(cmd)
     stats = []
     for line in stdout.split("\n"):

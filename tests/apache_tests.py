@@ -25,13 +25,13 @@ class ApacheTests(unittest.TestCase):
         with mock.patch('pygmetric.shell.run') as run:
             run.return_value = STDOUT
             from pygmetric import apache
-            stats = apache.fetch_stats()
+            stats = apache.fetch_stats(host='localhost', port='80')
         self.assertEqual(6, len(stats))
 
     def test_submit(self):
         with mock.patch('pygmetric.shell.run') as run:
             run.return_value = STDOUT
             from pygmetric import apache
-            apache.submit()
+            apache.submit(host='localhost', port='80', debug=False)
 
 

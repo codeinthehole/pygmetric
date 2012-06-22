@@ -1,12 +1,13 @@
 from pygmetric.shell import run, call_gmetric
 
 
-def submit(host, port):
+def submit(host, port, debug):
     stats = fetch_stats(host, port)
     for metric in stats:
         call_gmetric(name=metric['name'],
                      value=metric['value'],
-                     type=metric['type'])
+                     type=metric['type'],
+                     debug=debug)
 
 types = {
     'IdleWorkers': {

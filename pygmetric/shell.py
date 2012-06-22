@@ -13,8 +13,12 @@ def run(cmd):
     return stdout
 
 
-def call_gmetric(name, value, type='float'):
+def call_gmetric(name, value, type='float', debug=False):
     """
     Submit a metric
     """
-    run('gmetric --type %s --name %s --value %s' % (type, name, value))
+    cmd = 'gmetric --type %s --name %s --value %s' % (type, name, value)
+    if debug:
+        print cmd
+    else:
+        run(cmd)

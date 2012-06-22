@@ -1,3 +1,9 @@
 Nginx metrics
 MySQL
 Rabbitmq
+
+gmetric options:
+- slope
+- groups
+- description
+- units

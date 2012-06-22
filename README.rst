@@ -55,6 +55,11 @@ You should see something like::
     ................................................................................
     ............................
 
+Nginx
+~~~~~
+
+You need to ensure that Nginx stats are fetched on ``/nginx_status``.
+
 Usage
 -----
 

@@ -15,7 +15,7 @@ def fetch_stats(vhost, queue):
     """
     Fetch the count of a given queue
     """
-    cmd = 'rabbitmqctl list_queues -p %s' % vhost
+    cmd = '/usr/sbin/rabbitmqctl list_queues -p %s' % vhost
     stdout = run(cmd)
     lines = stdout.split("\n")
 

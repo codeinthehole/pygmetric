@@ -14,7 +14,7 @@ if __name__ == '__main__':
                       action='store_true',
                       help="Print out metric commands without submitting")
     options, args = parser.parse_args()
-    apache.submit(
+    nginx.submit(
         host=options.host,
         port=options.port,
         debug=options.debug,

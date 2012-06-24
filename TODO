@@ -1,6 +1,6 @@
 Nginx metrics
 MySQL
-Rabbitmq
+Rabbitmq rate of procesing
 
 gmetric options:
 - slope

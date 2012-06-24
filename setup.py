@@ -9,4 +9,7 @@ setup(name='pygmetric',
       description="gmetric scripts written in python (for used with Ganglia)",
       long_description=open('README.rst').read(),
       packages=find_packages(),
-      scripts=['bin/pygmetric_apache'])
+      scripts=['bin/pygmetric_apache',
+               'bin/pygmetric_nginx',
+               'bin/pygmetric_rabbitmq',
+              ])

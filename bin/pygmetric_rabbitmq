@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+from optparse import OptionParser
+
+from pygmetric import rabbitmq
+
+if __name__ == '__main__':
+    parser = OptionParser()
+    parser.add_option('--vhost', dest='vhost', default='/',
+                      help="Specify the virtual host to query (default: '/')")
+    parser.add_option('--queue', dest='queue', 
+                      help="Specify the queue to monitor (default: 80)")
+    parser.add_option('-d', '--dry-run', dest='debug', default=False,
+                      action='store_true',
+                      help="Print out metric commands without submitting")
+    options, args = parser.parse_args()
+    rabbitmq.submit(
+        vhost=options.vhost,
+        queue=options.queue,
+        debug=options.debug,
+    )

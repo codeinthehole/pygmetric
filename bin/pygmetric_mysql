@@ -6,9 +6,9 @@ from pygmetric import mysql
 
 if __name__ == '__main__':
     parser = OptionParser()
-    parser.add_option('--user', dest='user', default='/',
+    parser.add_option('--user', dest='user',
                       help="Specify the user to use")
-    parser.add_option('--password', dest='password', 
+    parser.add_option('--password', dest='password',
                       help="Specify the password to use")
     parser.add_option('-d', '--dry-run', dest='debug', default=False,
                       action='store_true',

@@ -11,6 +11,7 @@ def submit(user, password, debug):
                                      units=metric['units'],
                                      debug=debug)
 
+
 COUNT_METRICS = {
     'Threads_connected': {
         'name': 'mysql_threads_connected',
@@ -84,7 +85,7 @@ RATE_METRICS = {
 
 
 def fetch_stats(user, password):
-    cmd = 'mysql --user=%s --password=%s -e "SHOW GLOBAL STATUS"' % (user, password)
+    cmd = 'mysqladmin extended --user=%s --password=%s' % (user, password)
     stdout = pygmetric.shell.run(cmd)
 
     metrics = {}
@@ -104,10 +105,12 @@ def fetch_stats(user, password):
         elif mysql_name in RATE_METRICS:
             prototype = RATE_METRICS[mysql_name]
             current_value = int(value)
-            metrics[prototype['name']] = {
-                'name': prototype['name'],
-                'value': pygmetric.get_rate(prototype['name'], current_value, 1),
-                'type': prototype['type'],
-                'units': prototype['units'],
-            }
+            value = pygmetric.get_rate(prototype['name'], current_value, 1)
+            if value:
+                metrics[prototype['name']] = {
+                    'name': prototype['name'],
+                    'value': value,
+                    'type': prototype['type'],
+                    'units': prototype['units'],
+                }
     return metrics

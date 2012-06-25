@@ -12,4 +12,5 @@ setup(name='pygmetric',
       scripts=['bin/pygmetric_apache',
                'bin/pygmetric_nginx',
                'bin/pygmetric_rabbitmq',
+               'bin/pygmetric_mysql',
               ])

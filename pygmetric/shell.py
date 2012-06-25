@@ -17,7 +17,7 @@ def call_gmetric(name, value, type='float', units="", debug=False):
     """
     Submit a metric to the gmond daemon
     """
-    cmd = 'gmetric --type=%s --name=%s --value=%s --units="%s"' % (type, name, value, units)
+    cmd = 'gmetric --type=%s --name=%s --value=%s' % (type, name, value)
     if debug:
         print cmd
     else:

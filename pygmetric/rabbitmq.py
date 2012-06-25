@@ -1,5 +1,5 @@
 import pygmetric.shell
-import pygmetric 
+import pygmetric
 
 
 def submit(vhost, queue, debug):

@@ -5,25 +5,31 @@ pygmetric
 A collection of gmetric scripts written in Python.  Included at the moment are:
 
 * Apache
+* Nginx
+* Rabbitmq
 
 Install
 -------
 
-Ensure server has packages required to install::
+Ensure our server has the required packages::
 
-    apt-get install python-pip git-core
+    sudo apt-get install python-pip git-core
 
 Now upgrade pip itself::
 
-    pip install -U pip
+    sudo pip install -U pip
 
-which can lead to an alternative executable to the system one.
+which can lead to an alternative pip executable to the system one.  For the
+below commands, ensure you are using the latest pip version.
 
-Then::
+Then install pygmetric from Github::
 
-    pip-2.6 install -e git+git://github.com/codeinthehole/pygmetric.git#egg=pygmetric
+    pip install -e git+git://github.com/codeinthehole/pygmetric.git#egg=pygmetric
 
-Finally, create a cronfile ``/etc/cron.d/ganglia-node`` with contents::
+Finally, create a cronfile ``/etc/cron.d/ganglia-node`` which calls the
+appropriate metric executables.  An example would be::
+
+    MAILTO=your.email@address
 
     * * * * * root /usr/local/bin/pygmetric_apache
 

@@ -1,6 +1,7 @@
 import unittest
-
 import mock
+
+from pygmetric import rabbitmq
 
 
 STDOUT = """Listing queues ...
@@ -14,11 +15,17 @@ csv_imports	0
 """
 
 
+@mock.patch('pygmetric.shell.run')
 class RabbitmqTests(unittest.TestCase):
 
-    def test_queue_count_captured(self):
-        with mock.patch('pygmetric.shell.run') as run:
-            run.return_value = STDOUT
-            from pygmetric import rabbitmq
-            stats = rabbitmq.fetch_stats(vhost='/', queue='solr')
+    def test_queue_count_captured(self, mock_run):
+        mock_run.return_value = STDOUT
+        stats = rabbitmq.fetch_stats(vhost='/', queue='solr')
         self.assertEqual(stats['rabbitmq_queue_solr']['value'], 25578)
+
+    @mock.patch('pygmetric.get_rate')
+    def test_queue_rate_captured(self, mock_rate, mock_run):
+        mock_run.return_value = STDOUT
+        mock_rate.return_value = 3
+        stats = rabbitmq.fetch_stats(vhost='/', queue='solr')
+        self.assertEqual(stats['rabbitmq_queue_solr_rate']['value'], 3)

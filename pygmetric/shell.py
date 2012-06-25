@@ -22,6 +22,3 @@ def call_gmetric(name, value, type='float', units="", debug=False):
         print cmd
     else:
         run(cmd)
-
-class A(object):
-    pass

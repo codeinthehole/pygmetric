@@ -43,7 +43,10 @@ def fetch_stats(host, port):
     for line in stdout.split("\n"):
         if ':' not in line:
             continue
-        key, value = line.split(': ')
+        parts = line.split(':')
+        if len(parts) != 2:
+            continue
+        key, value = parts
         if key in types:
             prototype = types[key]
             stats.append({

@@ -7,24 +7,25 @@ A collection of gmetric scripts written in Python.  Included at the moment are:
 * Apache
 * Nginx
 * Rabbitmq
+* MySQL
 
 Install
 -------
 
 Ensure our server has the required packages::
 
-    sudo apt-get install python-pip git-core
+    sudo apt-get install python-setuptools git-core
 
 Now upgrade pip itself::
 
-    sudo pip install -U pip
+    sudo easy_install pip
 
 which can lead to an alternative pip executable to the system one.  For the
 below commands, ensure you are using the latest pip version.
 
 Then install pygmetric from Github::
 
-    pip install -e git+git://github.com/codeinthehole/pygmetric.git#egg=pygmetric
+    sudo pip install git+git://github.com/codeinthehole/pygmetric.git#egg=pygmetric
 
 Finally, create a cronfile ``/etc/cron.d/ganglia-node`` which calls the
 appropriate metric executables.  An example would be::

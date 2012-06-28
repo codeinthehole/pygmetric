@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 
 def run(cmd):
@@ -17,8 +18,9 @@ def call_gmetric(name, value, type='float', units="", debug=False):
     """
     Submit a metric to the gmond daemon
     """
-    cmd = 'gmetric --type=%s --name=%s --value=%s' % (type, name, value)
+    cmd = 'gmetric --type=%s --name=%s --value=%s --units="%s"' % (type, name, value, units)
     if debug:
         print cmd
     else:
-        run(cmd)
+        # Don't care about output here
+        os.system(cmd)

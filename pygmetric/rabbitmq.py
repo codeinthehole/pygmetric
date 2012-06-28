@@ -37,7 +37,7 @@ def fetch_stats(vhost, queue):
             rate_name = "%s_rate" % name
             rate = pygmetric.get_rate(rate_name, value, period=60)
             
-            if rate:
+            if rate is not None:
                 metrics[rate_name] = {
                     'name': rate_name,
                     'value': rate,

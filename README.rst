@@ -12,7 +12,7 @@ A collection of gmetric scripts written in Python.  Included at the moment are:
 Install
 -------
 
-Ensure our server has the required packages::
+Ensure your server has the required packages::
 
     sudo apt-get install python-setuptools git-core
 
@@ -23,7 +23,7 @@ Now upgrade pip itself::
 which can lead to an alternative pip executable to the system one.  For the
 below commands, ensure you are using the latest pip version.
 
-Then install pygmetric from Github::
+Install pygmetric from Github::
 
     sudo pip install git+git://github.com/codeinthehole/pygmetric.git#egg=pygmetric
 
@@ -62,10 +62,20 @@ You should see something like::
     ................................................................................
     ............................
 
+MySQL
+~~~~~
+
+You need to set up a user for pygmetric to connect as.  Ensure this user only
+has read access.
+
+For pygmetric to fetch stats, the following command needs to work::
+
+    mysqladmin extended --user=$USERNAME --password=$PASSWORD
+
 Nginx
 ~~~~~
 
-You need to ensure that Nginx stats are fetched on ``/nginx_status``.
+You need to ensure that Nginx stats are available on ``/nginx_status``.
 
 Usage
 -----

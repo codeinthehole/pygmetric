@@ -2,10 +2,14 @@
 
 from optparse import OptionParser
 
+import pygmetric
 from pygmetric import mysql
 
 if __name__ == '__main__':
     parser = OptionParser()
+    parser.add_option('-v', '--version', dest='show_version',
+                      action='store_true', default=False,
+                      help="Display the current version and exit")
     parser.add_option('--user', dest='user',
                       help="Specify the user to use")
     parser.add_option('--password', dest='password',
@@ -14,8 +18,11 @@ if __name__ == '__main__':
                       action='store_true',
                       help="Print out metric commands without submitting")
     options, args = parser.parse_args()
-    mysql.submit(
-        user=options.user,
-        password=options.password,
-        debug=options.debug,
-    )
+    if options.show_version:
+        print pygmetric.__version__
+    else:
+        mysql.submit(
+            user=options.user,
+            password=options.password,
+            debug=options.debug,
+        )

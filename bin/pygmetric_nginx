@@ -2,10 +2,14 @@
 
 from optparse import OptionParser
 
+import pygmetric
 from pygmetric import nginx
 
 if __name__ == '__main__':
     parser = OptionParser()
+    parser.add_option('-v', '--version', dest='show_version',
+                      action='store_true', default=False,
+                      help="Display the current version and exit")
     parser.add_option('--host', dest='host', default='localhost',
                       help="Specify the host to query (default: localhost)")
     parser.add_option('--port', dest='port', default='80',
@@ -14,8 +18,11 @@ if __name__ == '__main__':
                       action='store_true',
                       help="Print out metric commands without submitting")
     options, args = parser.parse_args()
-    nginx.submit(
-        host=options.host,
-        port=options.port,
-        debug=options.debug,
-    )
+    if options.show_version:
+        print pygmetric.__version__
+    else:
+        nginx.submit(
+            host=options.host,
+            port=options.port,
+            debug=options.debug,
+        )

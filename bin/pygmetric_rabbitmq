@@ -2,10 +2,14 @@
 
 from optparse import OptionParser
 
+import pygmetric
 from pygmetric import rabbitmq
 
 if __name__ == '__main__':
     parser = OptionParser()
+    parser.add_option('-v', '--version', dest='show_version',
+                      action='store_true', default=False,
+                      help="Display the current version and exit")
     parser.add_option('--vhost', dest='vhost', default='/',
                       help="Specify the virtual host to query (default: '/')")
     parser.add_option('--queue', dest='queue', 
@@ -14,8 +18,11 @@ if __name__ == '__main__':
                       action='store_true',
                       help="Print out metric commands without submitting")
     options, args = parser.parse_args()
-    rabbitmq.submit(
-        vhost=options.vhost,
-        queue=options.queue,
-        debug=options.debug,
-    )
+    if options.show_version:
+        print pygmetric.__version__
+    else:
+        rabbitmq.submit(
+            vhost=options.vhost,
+            queue=options.queue,
+            debug=options.debug,
+        )

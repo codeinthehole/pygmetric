@@ -3,6 +3,8 @@ import os
 import pickle
 import time
 
+__version__ = '0.2'
+
 
 def get_rate(name, current_value, period=60):
     """

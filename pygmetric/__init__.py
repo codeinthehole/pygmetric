@@ -16,11 +16,14 @@ def get_rate(name, current_value, period=60):
     rate = None
     if os.path.exists(filepath):
         with open(filepath, 'r') as f:
-            old_stats = pickle.load(f)
-            old_ts = old_stats['timestamp']
-            old_value = old_stats['value']
-            if old_ts != current_ts:
-                rate = (current_value - old_value) / (current_ts - old_ts) * period
+            contents = f.read()
+            if contents:
+                f.seek(0)
+                old_stats = pickle.load(f)
+                old_ts = old_stats['timestamp']
+                old_value = old_stats['value']
+                if old_ts != current_ts:
+                    rate = (current_value - old_value) / (current_ts - old_ts) * period
 
     # Save current metric for next time
     stats = {
